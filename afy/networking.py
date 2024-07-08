@@ -4,7 +4,7 @@ import msgpack
 import msgpack_numpy as m
 m.patch()
 
-from afy.utils import log
+from utils import log
 
 
 def check_connection(socket, timeout=1000):

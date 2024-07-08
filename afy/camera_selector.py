@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import yaml
 
-from afy.utils import log
+from utils import log
 
 
 g_selected_cam = None

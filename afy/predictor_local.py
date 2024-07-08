@@ -1,9 +1,13 @@
 from scipy.spatial import ConvexHull
 import torch
 import yaml
-from modules.keypoint_detector import KPDetector
-from modules.generator_optim import OcclusionAwareGenerator
-from sync_batchnorm import DataParallelWithCallback
+try:
+    from fomm.modules.keypoint_detector import KPDetector
+    from fomm.modules.generator_optim import OcclusionAwareGenerator
+    from fomm.sync_batchnorm import DataParallelWithCallback
+    print("Successfully imported KPDetector")
+except ImportError as e:
+    print("ImportError:", e)
 import numpy as np
 import face_alignment
 
@@ -37,7 +41,8 @@ def to_tensor(a):
 
 class PredictorLocal:
     def __init__(self, config_path, checkpoint_path, relative=False, adapt_movement_scale=False, device=None, enc_downscale=1):
-        self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
+        self.device = device or ('cuda')
+        print(f"Using device: {self.device}")
         self.relative = relative
         self.adapt_movement_scale = adapt_movement_scale
         self.start_frame = None
@@ -46,7 +51,7 @@ class PredictorLocal:
         self.config_path = config_path
         self.checkpoint_path = checkpoint_path
         self.generator, self.kp_detector = self.load_checkpoints()
-        self.fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=True, device=self.device)
+        self.fa = face_alignment.FaceAlignment(face_alignment.LandmarksType, flip_input=True, device=self.device)
         self.source = None
         self.kp_source = None
         self.enc_downscale = enc_downscale

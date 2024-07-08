@@ -8,10 +8,10 @@ import requests
 import numpy as np
 import cv2
 
-from afy.videocaptureasync import VideoCaptureAsync
-from afy.arguments import opt
-from afy.utils import info, Once, Tee, crop, pad_img, resize, TicToc
-import afy.camera_selector as cam_selector
+from videocaptureasync import VideoCaptureAsync
+from arguments import opt
+from utils import info, Once, Tee, crop, pad_img, resize, TicToc
+import camera_selector as cam_selector
 
 
 log = Tee('./var/log/cam_fomm.log')
@@ -213,7 +213,7 @@ if __name__ == "__main__":
             sys.exit(1)
         predictor.start()
     else:
-        from afy import predictor_local
+        import predictor_local
         predictor = predictor_local.PredictorLocal(
             **predictor_args
         )

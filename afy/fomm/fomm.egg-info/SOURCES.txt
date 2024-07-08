@@ -1,0 +1,12 @@
+LICENSE.md
+README.md
+setup.py
+fomm.egg-info/PKG-INFO
+fomm.egg-info/SOURCES.txt
+fomm.egg-info/dependency_links.txt
+fomm.egg-info/top_level.txt
+sync_batchnorm/__init__.py
+sync_batchnorm/batchnorm.py
+sync_batchnorm/comm.py
+sync_batchnorm/replicate.py
+sync_batchnorm/unittest.py
