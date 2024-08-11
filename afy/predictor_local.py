@@ -2,9 +2,8 @@ from scipy.spatial import ConvexHull
 import torch
 import yaml
 try:
-    from fomm.modules.keypoint_detector import KPDetector
-    from fomm.modules.generator_optim import OcclusionAwareGenerator
-    from fomm.sync_batchnorm import DataParallelWithCallback
+    from modules.keypoint_detector import KPDetector
+    from modules.generator_optim import OcclusionAwareGenerator
     print("Successfully imported KPDetector")
 except ImportError as e:
     print("ImportError:", e)
